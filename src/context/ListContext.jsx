@@ -1,9 +1,23 @@
-import { useState, createContext, useContext } from 'react';
+import { useState, createContext, useContext, useEffect } from 'react';
+import { fetchGroceries } from '../services/grocery-list';
 
 const ListContext = createContext();
 
 export function ListProvider({ children }) {
-  const ListValues = {};
+  const [list, setList] = useState([]);
+  const [item, setItem] = useState({});
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await fetchGroceries();
+      setList(data);
+      setLoading(false);
+    };
+    fetchData();
+  }, []);
+
+  const ListValues = { list, setList, item, setItem, loading, setLoading };
 
   return (
     <ListContext.Provider value={ListValues}>{children}</ListContext.Provider>

@@ -16,8 +16,8 @@ export async function fetchById(id) {
 
 export async function createItem(item) {
   const resp = await client
-    .from('grocer-list')
-    .insert([{ task: item, user_id: client.auth.user().id }]);
+    .from('grocery-list')
+    .insert([{ item: item, user_id: client.auth.user().id }]);
   return checkError(resp);
 }
 

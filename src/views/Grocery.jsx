@@ -3,6 +3,7 @@ import { itemReducer } from '../components/ItemReducer';
 
 import AddItem from '../components/AddItem';
 import ItemList from '../components/ItemList';
+import { ListProvider } from '../context/ListContext';
 
 export default function Shopping() {
   const initialState = [];
@@ -34,12 +35,14 @@ export default function Shopping() {
   return (
     <div>
       <h1>shop til you drop</h1>
-      <AddItem handleAdd={handleAdd} />
-      <ItemList
-        items={items}
-        handleEdit={handleEdit}
-        handleDelete={handleDelete}
-      />
+      <ListProvider>
+        <AddItem handleAdd={handleAdd} />
+        <ItemList
+          items={items}
+          handleEdit={handleEdit}
+          handleDelete={handleDelete}
+        />
+      </ListProvider>
     </div>
   );
 }

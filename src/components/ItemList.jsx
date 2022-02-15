@@ -1,13 +1,20 @@
 import React from 'react';
+import { useList } from '../context/ListContext';
 
-export default function ItemList({ handleDelete, handleEdit, items }) {
+export default function ItemList({ handleDelete, handleEdit }) {
+  const { list } = useList();
+
   return (
     <div>
-      {items.map((item) => (
-        <label key={item.id}>
-          <input type="checkbox" />
-          {item.item}
-        </label>
+      {list.map((item) => (
+        <div key={item.id}>
+          <label>
+            <input type="checkbox" />
+            {item.item}
+          </label>
+          <button>edit</button>
+          <button>delete</button>
+        </div>
       ))}
     </div>
   );
