@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { signInUser, signUpUser } from '../../services/users';
+import { signInUser, signUpUser } from '../services/users';
 import AuthForm from '../components/AuthForm';
 
 export default function Auth({ type, setCurrentUser }) {
