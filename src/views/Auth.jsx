@@ -1,11 +1,14 @@
 import { useState } from 'react';
 import { signInUser, signUpUser } from '../services/users';
 import AuthForm from '../components/AuthForm';
+import { useUser } from '../context/UserContext';
 
-export default function Auth({ type, setCurrentUser }) {
+export default function Auth() {
   const [errorMessage, setErrorMessage] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const { type, setUser } = useUser();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -14,7 +17,7 @@ export default function Auth({ type, setCurrentUser }) {
         type === 'signin'
           ? await signInUser(email, password)
           : await signUpUser(email, password);
-      setCurrentUser(response);
+      setUser(response);
     } catch {
       setErrorMessage(
         'Something went wrong. Please make sure all feilds are filled out correctly.'
