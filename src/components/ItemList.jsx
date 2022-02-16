@@ -1,6 +1,6 @@
 import React from 'react';
 import { useList } from '../context/ListContext';
-import { editItem, updateItem } from '../services/grocery-list';
+import { editItem, updateItem, deleteById } from '../services/grocery-list';
 
 export default function ItemList({ handleDelete, handleEdit }) {
   const { list, setList } = useList();
@@ -21,12 +21,14 @@ export default function ItemList({ handleDelete, handleEdit }) {
         item.id === task.id ? { ...task, item: task.item } : item
       )
     );
+    handleEdit(task.item);
   };
 
   const handleDeleting = async (id) => {
     try {
       await deleteById(id);
-      setList(toDos.filter((i) => i.id !== id));
+      setList(list.filter((i) => i.id !== id));
+      handleDelete(id);
       alert('You have successfully removed this task!');
     } catch {
       alert('Something went wrong! Please try again.');

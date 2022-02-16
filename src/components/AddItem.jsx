@@ -10,7 +10,6 @@ export default function AddItem({ handleAdd }) {
     e.preventDefault();
     try {
       const [resp] = await createItem(text);
-      console.log(resp);
       setList((prevState) => [...prevState, resp]);
       handleAdd(text);
       setText('');
