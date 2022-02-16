@@ -6,12 +6,6 @@ export default function AddItem({ handleAdd }) {
   const { setList } = useList();
   const [text, setText] = useState('');
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   handleAdd(text);
-  //   setText('');
-  // };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {

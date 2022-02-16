@@ -17,7 +17,9 @@ export async function fetchById(id) {
 export async function createItem(item) {
   const resp = await client
     .from('grocery-list')
-    .insert([{ item: item, user_id: client.auth.user().id }]);
+    .insert([
+      { item: item, user_id: client.auth.user().id, is_complete: false },
+    ]);
   return checkError(resp);
 }
 
@@ -29,7 +31,15 @@ export async function updateItem(id, is_complete) {
   return checkError(response);
 }
 
+export async function editItem(id, item) {
+  const response = await client
+    .from('grocery-list')
+    .update({ item })
+    .eq('id', id);
+  return checkError(response);
+}
+
 export async function deleteById(id) {
-  const response = await client.from('grocery').delete().match({ id });
+  const response = await client.from('grocery-list').delete().match({ id });
   return checkError(response);
 }

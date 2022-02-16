@@ -14,7 +14,7 @@ export default function Shopping() {
     dispatch({
       type: 'add',
       id: items.length + 1,
-      text: text,
+      item: text,
     });
   };
 
@@ -28,7 +28,7 @@ export default function Shopping() {
   const handleEdit = (item) => {
     dispatch({
       type: 'edit',
-      item,
+      item: item,
     });
   };
 
@@ -37,11 +37,7 @@ export default function Shopping() {
       <h1>shop til you drop</h1>
       <ListProvider>
         <AddItem handleAdd={handleAdd} />
-        <ItemList
-          items={items}
-          handleEdit={handleEdit}
-          handleDelete={handleDelete}
-        />
+        <ItemList handleEdit={handleEdit} handleDelete={handleDelete} />
       </ListProvider>
     </div>
   );
