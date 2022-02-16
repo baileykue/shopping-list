@@ -5,7 +5,6 @@ const ListContext = createContext();
 
 export function ListProvider({ children }) {
   const [list, setList] = useState([]);
-  const [item, setItem] = useState({});
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -17,7 +16,7 @@ export function ListProvider({ children }) {
     fetchData();
   }, []);
 
-  const ListValues = { list, setList, item, setItem, loading, setLoading };
+  const ListValues = { list, setList, loading, setLoading };
 
   return (
     <ListContext.Provider value={ListValues}>{children}</ListContext.Provider>

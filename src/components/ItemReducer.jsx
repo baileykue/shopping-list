@@ -1,7 +1,7 @@
 const itemReducer = (items, { type, id, text, task }) => {
   switch (type) {
     case 'add':
-      return [...items, { id: id, item: text, done: false }];
+      return [...items, { id: id, item: text, is_complete: false }];
     case 'delete':
       return items.filter((item) => item.id !== id);
     case 'edit':

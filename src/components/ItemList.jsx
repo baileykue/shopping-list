@@ -1,27 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useList } from '../context/ListContext';
-import { editItem, updateItem, deleteById } from '../services/grocery-list';
+import { updateItem, deleteById } from '../services/grocery-list';
+
+import Item from './Item';
 
 export default function ItemList({ handleDelete, handleEdit }) {
   const { list, setList } = useList();
+  const [updateText, setUpdateText] = useState('');
 
-  const handleCheck = async (task) => {
-    await updateItem(task.id, !task.is_complete);
+  const handleEditing = async (item) => {
+    await updateItem(item);
     setList((prevState) =>
-      prevState.map((item) =>
-        item.id === task.id ? { ...task, is_complete: !task.is_complete } : item
+      prevState.map((it) =>
+        it.id === item.id ? { ...item, item: item.item } : it
       )
     );
-  };
-
-  const handleEditing = async (task) => {
-    await editItem(task.id, task.item);
-    setList((prevState) =>
-      prevState.map((item) =>
-        item.id === task.id ? { ...task, item: task.item } : item
-      )
-    );
-    handleEdit(task.item);
+    handleEdit(item.item);
   };
 
   const handleDeleting = async (id) => {
@@ -39,21 +33,12 @@ export default function ItemList({ handleDelete, handleEdit }) {
     <div>
       {list.map((item) => (
         <div key={item.id}>
-          <label>
-            <input
-              type="checkbox"
-              checked={item.is_completed}
-              onChange={(e) => {
-                handleCheck({
-                  ...item,
-                  is_completed: e.target.checked,
-                });
-              }}
-            />
-            {item.item}
-          </label>
-          <button onClick={() => handleEditing(item)}>edit</button>
-          <button onClick={() => handleDeleting(item.id)}>delete</button>
+          <Item
+            item={item}
+            handleEditing={handleEditing}
+            handleDeleting={handleDeleting}
+            setTextEdit={setTextEdit}
+          />
         </div>
       ))}
     </div>

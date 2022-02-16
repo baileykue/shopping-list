@@ -23,21 +23,21 @@ export async function createItem(item) {
   return checkError(resp);
 }
 
-export async function updateItem(id, is_complete) {
+export async function updateItem({ id, item, is_complete }) {
   const response = await client
     .from('grocery-list')
-    .update({ is_complete })
+    .update({ is_complete, item })
     .eq('id', id);
   return checkError(response);
 }
 
-export async function editItem(id, item) {
-  const response = await client
-    .from('grocery-list')
-    .update({ item })
-    .eq('id', id);
-  return checkError(response);
-}
+// export async function editItem(id, item) {
+//   const response = await client
+//     .from('grocery-list')
+//     .update({ item })
+//     .eq('id', id);
+//   return checkError(response);
+// }
 
 export async function deleteById(id) {
   const response = await client.from('grocery-list').delete().match({ id });
