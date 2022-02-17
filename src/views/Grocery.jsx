@@ -25,10 +25,10 @@ export default function Shopping() {
     });
   };
 
-  const handleEdit = (item) => {
+  const handleEdit = (task) => {
     dispatch({
       type: 'edit',
-      item: item,
+      task,
     });
   };
 

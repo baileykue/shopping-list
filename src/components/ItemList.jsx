@@ -15,7 +15,7 @@ export default function ItemList({ handleDelete, handleEdit }) {
         it.id === item.id ? { ...item, item: item.item } : it
       )
     );
-    handleEdit(item.item);
+    handleEdit(item);
   };
 
   const handleDeleting = async (id) => {
@@ -37,7 +37,7 @@ export default function ItemList({ handleDelete, handleEdit }) {
             item={item}
             handleEditing={handleEditing}
             handleDeleting={handleDeleting}
-            setTextEdit={setTextEdit}
+            setUpdateText={setUpdateText}
           />
         </div>
       ))}

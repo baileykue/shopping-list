@@ -11,6 +11,7 @@ export async function fetchById(id) {
     .select()
     .match({ id })
     .single();
+
   return checkError(response);
 }
 
@@ -30,14 +31,6 @@ export async function updateItem({ id, item, is_complete }) {
     .eq('id', id);
   return checkError(response);
 }
-
-// export async function editItem(id, item) {
-//   const response = await client
-//     .from('grocery-list')
-//     .update({ item })
-//     .eq('id', id);
-//   return checkError(response);
-// }
 
 export async function deleteById(id) {
   const response = await client.from('grocery-list').delete().match({ id });

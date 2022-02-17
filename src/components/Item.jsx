@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { fetchById } from '../services/grocery-list';
 
 export default function Item({
   item,
   handleDeleting,
   handleEditing,
-  setTextEdit,
+  setUpdateText,
 }) {
   const [edit, setEdit] = useState(false);
 
@@ -32,7 +33,7 @@ export default function Item({
               type="text"
               value={item.item}
               placeholder={item.item}
-              onChange={(e) => setTextEdit(e.target.value)}
+              onChange={(e) => setUpdateText(e.target.value)}
             />
             <button onClick={handleSubmit}>save</button>
           </>
