@@ -3,9 +3,8 @@ import { useState } from 'react';
 export default function Item({ item, handleDelete, handleEdit }) {
   const [edit, setEdit] = useState(false);
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
     setEdit(false);
-    handleEdit(item);
   };
 
   return (
@@ -14,7 +13,11 @@ export default function Item({ item, handleDelete, handleEdit }) {
         <input type="checkbox" />
         {edit ? (
           <>
-            <input type="text" defaultValue={item.text} />
+            <input
+              type="text"
+              defaultValue={item.text}
+              onChange={(e) => handleEdit({ ...item, text: e.target.value })}
+            />
             <button onClick={handleSubmit}>save</button>
           </>
         ) : (
