@@ -1,25 +1,25 @@
 import { useState } from 'react';
 
-export default function Item({ item }) {
+export default function Item({ item, handleDelete, handleEdit }) {
   const [edit, setEdit] = useState(false);
 
   const handleSubmit = () => {
     setEdit(false);
-    handleEditing(item);
+    handleEdit(item);
   };
 
   return (
     <div>
       <label>
-        <input type="checkbox" checked={item.is_completed} />
+        <input type="checkbox" />
         {edit ? (
           <>
-            <input type="text" value={item.item} placeholder={item.item} />
+            <input type="text" defaultValue={item.text} />
             <button onClick={handleSubmit}>save</button>
           </>
         ) : (
           <>
-            <p>{item.item}</p>
+            <p>{item.text}</p>
             <button onClick={() => setEdit(true)}>edit</button>
           </>
         )}

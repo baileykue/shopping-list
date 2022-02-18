@@ -45,7 +45,7 @@ export default function Shopping() {
 
   const handleAdd = (text) => {
     dispatch({
-      type: 'added',
+      type: 'add',
       id: items.length + 1,
       text,
     });
@@ -53,14 +53,14 @@ export default function Shopping() {
 
   const handleEdit = (task) => {
     dispatch({
-      type: 'changed',
+      type: 'edit',
       task,
     });
   };
 
   const handleDelete = (taskId) => {
     dispatch({
-      type: 'deleted',
+      type: 'delete',
       id: taskId,
     });
   };
