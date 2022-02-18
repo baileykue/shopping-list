@@ -9,13 +9,13 @@ export default function ItemList() {
   return (
     <div>
       {items.map((item) => (
-        <div key={item.id}>
+        <ul key={item.id}>
           <Item
             item={item}
             handleEdit={handleEdit}
             handleDelete={handleDelete}
           />
-        </div>
+        </ul>
       ))}
     </div>
   );

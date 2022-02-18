@@ -11,7 +11,7 @@ export default function Header() {
   return (
     <header>
       {`You have ${items.length} items on your grocery list`}
-      <button onClick={handleSubmit}>clear cart</button>
+      <button onClick={handleSubmit}>clear list</button>
     </header>
   );
 }

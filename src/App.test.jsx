@@ -1,9 +1,14 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from './App';
+import { ItemProvider } from './context/ItemContext';
 
 test('that the add, edit, and delete buttons work properly', () => {
-  render(<App />);
+  render(
+    <ItemProvider>
+      <App />
+    </ItemProvider>
+  );
 
   const addInput = screen.getByLabelText(/new item:/i);
   const addButton = screen.getByRole('button', { name: /add/i });
@@ -36,4 +41,20 @@ test('that the add, edit, and delete buttons work properly', () => {
   const deleteButton = screen.getByLabelText(/delete-tomatoes & bread/i);
   userEvent.click(deleteButton);
   expect(screen.queryByText(/tomatoes & bread/i)).not.toBeInTheDocument();
+});
+
+test('that the clear button works appropriately', () => {
+  render(
+    <ItemProvider>
+      <App />
+    </ItemProvider>
+  );
+
+  const grocList = screen.getAllByRole('listitem');
+  expect(grocList).toHaveLength(4);
+
+  const resetButton = screen.getByRole('button', { name: /clear list/i });
+  userEvent.click(resetButton);
+
+  expect(screen.queryAllByRole('listitem')).toHaveLength(0);
 });

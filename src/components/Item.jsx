@@ -8,7 +8,7 @@ export default function Item({ item, handleDelete, handleEdit }) {
   };
 
   return (
-    <div>
+    <li>
       <input type="checkbox" />
       {edit ? (
         <>
@@ -41,6 +41,6 @@ export default function Item({ item, handleDelete, handleEdit }) {
       >
         delete
       </button>
-    </div>
+    </li>
   );
 }
