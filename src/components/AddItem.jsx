@@ -1,7 +1,9 @@
 import { useState } from 'react';
+import { useItem } from '../context/ItemContext';
 
-export default function AddItem({ handleAdd }) {
+export default function AddItem() {
   const [newItem, setNewItem] = useState('');
+  const { handleAdd } = useItem();
 
   const handleSubmit = (event) => {
     event.preventDefault();

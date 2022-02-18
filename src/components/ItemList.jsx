@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
+import { useItem } from '../context/ItemContext';
 
 import Item from './Item';
 
-export default function ItemList({ handleDelete, handleEdit, items }) {
+export default function ItemList() {
+  const { items, handleEdit, handleDelete } = useItem();
+
   return (
     <div>
       {items.map((item) => (
