@@ -32,6 +32,9 @@ function itemReducer(items, action) {
     case 'delete': {
       return items.filter((item) => item.id !== action.id);
     }
+    case 'reset': {
+      return (items = []);
+    }
     default: {
       throw Error(
         `this is not the action i was looking for: ${action.type} not recognized`
@@ -65,7 +68,14 @@ const ItemProvider = ({ children }) => {
     });
   };
 
-  const itemValue = { items, handleEdit, handleAdd, handleDelete };
+  const handleReset = (items) => {
+    dispatch({
+      type: 'reset',
+      items,
+    });
+  };
+
+  const itemValue = { items, handleEdit, handleAdd, handleDelete, handleReset };
 
   return (
     <ItemContext.Provider value={itemValue}>{children}</ItemContext.Provider>

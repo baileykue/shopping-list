@@ -6,10 +6,8 @@ export default function Shopping() {
   return (
     <div>
       <h1>grocery shop til you drop</h1>
-      <ItemProvider>
-        <AddItem />
-        <ItemList />
-      </ItemProvider>
+      <AddItem />
+      <ItemList />
     </div>
   );
 }
