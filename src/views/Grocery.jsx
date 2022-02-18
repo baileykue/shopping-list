@@ -7,6 +7,7 @@ const initialItems = [
   { id: 0, text: 'Cheese ', is_complete: false },
   { id: 1, text: 'Wine', is_complete: false },
   { id: 2, text: 'Walnuts', is_complete: false },
+  { id: 3, text: 'Crackers', is_complete: false },
 ];
 
 export default function Shopping() {
