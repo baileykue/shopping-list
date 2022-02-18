@@ -1,12 +1,6 @@
-import { useEffect, useState } from 'react';
-import { fetchById } from '../services/grocery-list';
+import { useState } from 'react';
 
-export default function Item({
-  item,
-  handleDeleting,
-  handleEditing,
-  setUpdateText,
-}) {
+export default function Item({ item }) {
   const [edit, setEdit] = useState(false);
 
   const handleSubmit = () => {
@@ -17,24 +11,10 @@ export default function Item({
   return (
     <div>
       <label>
-        <input
-          type="checkbox"
-          checked={item.is_completed}
-          onChange={(e) => {
-            handleEditing({
-              ...item,
-              is_completed: e.target.checked,
-            });
-          }}
-        />
+        <input type="checkbox" checked={item.is_completed} />
         {edit ? (
           <>
-            <input
-              type="text"
-              value={item.item}
-              placeholder={item.item}
-              onChange={(e) => setUpdateText(e.target.value)}
-            />
+            <input type="text" value={item.item} placeholder={item.item} />
             <button onClick={handleSubmit}>save</button>
           </>
         ) : (
@@ -44,7 +24,7 @@ export default function Item({
           </>
         )}
       </label>
-      <button onClick={() => handleDeleting(item.id)}>delete</button>
+      <button onClick={() => handleDelete(item.id)}>delete</button>
     </div>
   );
 }

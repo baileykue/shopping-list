@@ -69,7 +69,11 @@ export default function Shopping() {
     <div>
       <h1>grocery shop til you drop</h1>
       <AddItem handleAdd={handleAdd} />
-      <ItemList handleEdit={handleEdit} handleDelete={handleDelete} />
+      <ItemList
+        items={items}
+        handleEdit={handleEdit}
+        handleDelete={handleDelete}
+      />
     </div>
   );
 }
